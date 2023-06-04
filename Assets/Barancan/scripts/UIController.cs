@@ -39,7 +39,7 @@ public class UIController : MonoBehaviour
 
     void StartButtonPressed()
     {
-        SceneManager.LoadScene("menu");
+        SceneManager.LoadScene("OguzTest");
         Debug.Log("start pressed");
     }
 
