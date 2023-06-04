@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
     [Header("Movement")] public float moveSpeed;
     public float rotationSpeed;
     private Transform playerMesh;
-
+    public float gravityForce;
     private CharacterController controller;
 
 // Start is called before the first frame update
@@ -25,6 +25,7 @@ public class PlayerControl : MonoBehaviour
         Vector3 dir = Vector3.right * horizontal + Vector3.forward * vertical;
         CalculateRotation(dir);
         controller.Move(moveSpeed * Time.deltaTime * dir);
+        controller.Move(Vector3.down * gravityForce);
     }
 
     private void CalculateRotation(Vector3 direction)
