@@ -37,7 +37,7 @@ public class PlayerAttack : MonoBehaviour
                 Attack(human);
             }
         }
-
+        
         if (pullHuman)
             human.transform.position = attackPivot.position;
     }
