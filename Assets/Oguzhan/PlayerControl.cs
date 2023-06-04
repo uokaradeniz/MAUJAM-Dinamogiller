@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerControl : MonoBehaviour
 {
     private float vertical;
     private float horizontal;
-    [Header("Movement")] public float moveSpeed;
+    [Header("Movement")] public float runSpeed;
+    [HideInInspector]public float moveSpeed;
     public float rotationSpeed;
     private Transform playerMesh;
     public float gravityForce;
@@ -17,6 +19,7 @@ public class PlayerControl : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         playerMesh = transform.Find("PlayerMesh");
         controller = GetComponent<CharacterController>();
+        moveSpeed = runSpeed;
     }
 
     // Update is called once per frame
