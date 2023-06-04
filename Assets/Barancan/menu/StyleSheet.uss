@@ -1,0 +1,44 @@
+.button {
+    background-color: rgb(31, 135, 161);
+    width: 100px;
+    height: 63px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    color: rgba(0, 0, 0, 255);
+}
+
+.button:hover {
+    background-color: rgb(24, 84, 99);
+    width: 100px;
+    height: 63px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    color: rgba(0, 0, 0, 255);
+}
+
+.button:active {
+    background-color: rgb(74, 171, 195);
+    width: 100px;
+    height: 63px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    color: rgba(226, 221, 221, 255);
+}
