@@ -42,7 +42,7 @@ public class HumanController : MonoBehaviour
         else
         {
             navMeshAgent.speed = 7;
-            navMeshAgent.acceleration = 3;
+            navMeshAgent.acceleration = 2;
         }
 
         if (Vector3.Distance(transform.position, player.transform.position) < escapeRange)

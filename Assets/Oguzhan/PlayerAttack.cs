@@ -33,7 +33,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 this.human = human;
                 pullHuman = true;
-                Invoke("PullTime",0.9f);
+                Invoke("PullTime",0.48f);
                 Attack(human);
             }
         }
@@ -50,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
     
     void Attack(Collider collider)
     {
-        Destroy(collider.gameObject,1f);
+        Destroy(collider.gameObject,.5f);
         
         isAttacking = true;
       
