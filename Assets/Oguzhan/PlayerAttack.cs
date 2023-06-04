@@ -14,6 +14,8 @@ public class PlayerAttack : MonoBehaviour
     private Collider human;
 
     private bool pullHuman;
+    public float score;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,16 +30,16 @@ public class PlayerAttack : MonoBehaviour
         {
             animator.SetTrigger("Attack");
             Collider[] humans = Physics.OverlapSphere(attackPivot.position, attackRange, layerMask);
-
+            
             foreach (var human in humans)
             {
                 this.human = human;
                 pullHuman = true;
-                Invoke("PullTime",0.48f);
+                Invoke("PullTime", 0.48f);
                 Attack(human);
             }
         }
-        
+
         if (pullHuman)
             human.transform.position = attackPivot.position;
     }
@@ -47,13 +49,12 @@ public class PlayerAttack : MonoBehaviour
         human = null;
         pullHuman = false;
     }
-    
+
     void Attack(Collider collider)
     {
-        Destroy(collider.gameObject,.5f);
-        
+        Destroy(collider.gameObject, .5f);
+        score += 5;
         isAttacking = true;
-      
     }
 
     void StopAttacking()
