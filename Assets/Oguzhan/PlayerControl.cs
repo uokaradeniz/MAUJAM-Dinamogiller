@@ -9,10 +9,12 @@ public class PlayerControl : MonoBehaviour
     private Transform playerMesh;
     public float gravityForce;
     private CharacterController controller;
+    private Animator animator;
 
 // Start is called before the first frame update
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         playerMesh = transform.Find("PlayerMesh");
         controller = GetComponent<CharacterController>();
     }
