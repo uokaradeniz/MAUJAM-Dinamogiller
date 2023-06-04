@@ -30,27 +30,30 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider[] humans = Physics.OverlapSphere(attackPivot.position, attackRange, layerMask);
-        
-        if(score >= 20 && Input.GetKeyDown(KeyCode.Q))
-            SpeedUp();
-        
-        if (!isAttacking && Input.GetButtonDown("Attack"))
+        if (!playerControl.gameHandler.wonGame)
         {
-            isAttacking = true;
-            animator.SetTrigger("Attack");
+            Collider[] humans = Physics.OverlapSphere(attackPivot.position, attackRange, layerMask);
 
-            foreach (var human in humans)
+            if (score >= 20 && Input.GetKeyDown(KeyCode.Q))
+                SpeedUp();
+
+            if (!isAttacking && Input.GetButtonDown("Attack"))
             {
-                this.human = human;
-                pullHuman = true;
-                Invoke("PullTime", 0.48f);
-                Attack(human);
-            }
-        }
+                isAttacking = true;
+                animator.SetTrigger("Attack");
 
-        if (pullHuman)
-            human.transform.position = attackPivot.position;
+                foreach (var human in humans)
+                {
+                    this.human = human;
+                    pullHuman = true;
+                    Invoke("PullTime", 0.48f);
+                    Attack(human);
+                }
+            }
+
+            if (pullHuman)
+                human.transform.position = attackPivot.position;
+        }
     }
 
     void PullTime()

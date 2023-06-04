@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class HumanSpawner : MonoBehaviour
 {
@@ -9,13 +11,23 @@ public class HumanSpawner : MonoBehaviour
     private float spawnDuration;
     private float spawnTimer;
 
+    private GameHandler gameHandler;
+
+    private void Start()
+    {
+        gameHandler = GameObject.Find("Game Handler").GetComponent<GameHandler>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        spawnDuration = Random.Range(spawnDurationMin, spawnDurationMax);
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer > spawnDuration)
-            SpawnHuman();
+        if (!gameHandler.wonGame)
+        {
+            spawnDuration = Random.Range(spawnDurationMin, spawnDurationMax);
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer > spawnDuration)
+                SpawnHuman();
+        }
     }
 
     void SpawnHuman()

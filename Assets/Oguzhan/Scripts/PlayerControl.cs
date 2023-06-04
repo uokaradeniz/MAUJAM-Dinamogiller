@@ -12,10 +12,12 @@ public class PlayerControl : MonoBehaviour
     public float gravityForce;
     private CharacterController controller;
     private Animator animator;
+    [HideInInspector]public GameHandler gameHandler;
 
 // Start is called before the first frame update
     private void Start()
     {
+        gameHandler = GameObject.Find("Game Handler").GetComponent<GameHandler>();
         animator = GetComponentInChildren<Animator>();
         playerMesh = transform.Find("PlayerMesh");
         controller = GetComponent<CharacterController>();
@@ -25,12 +27,15 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        vertical = Input.GetAxis("Vertical");
-        horizontal = Input.GetAxis("Horizontal");
-        Vector3 dir = Vector3.right * horizontal + Vector3.forward * vertical;
-        CalculateRotation(dir);
-        controller.Move(moveSpeed * Time.deltaTime * dir);
-        controller.Move(Vector3.down * gravityForce);
+        if (!gameHandler.wonGame)
+        {
+            vertical = Input.GetAxis("Vertical");
+            horizontal = Input.GetAxis("Horizontal");
+            Vector3 dir = Vector3.right * horizontal + Vector3.forward * vertical;
+            CalculateRotation(dir);
+            controller.Move(moveSpeed * Time.deltaTime * dir);
+            controller.Move(Vector3.down * gravityForce);
+        }
     }
 
     private void CalculateRotation(Vector3 direction)
