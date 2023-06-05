@@ -557,7 +557,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   isAttacking: 0
-  score: 56
+  score: 0
   speedupSpeed: 10
   overheatTimer: 5
   speedUpCounter: 0
