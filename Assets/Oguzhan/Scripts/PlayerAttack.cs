@@ -18,11 +18,15 @@ public class PlayerAttack : MonoBehaviour
 
     private PlayerControl playerControl;
     public float speedupSpeed;
-    public float overheatTimer;
-    private int speedUpCounter;
+    public float overheatTimer = 5;
+    public int speedUpCounter;
     private bool spedUp;
+    public float overheatCDR;
 
-    private bool overheatControl;
+    
+    
+    public bool overheatControl;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,20 +38,33 @@ public class PlayerAttack : MonoBehaviour
     void StopOverheat()
     {
         playerControl.moveSpeed = playerControl.runSpeed;
-        playerControl.gameHandler.overheatText.text = "!";
+        playerControl.gameHandler.overheatText.text = "";
         speedUpCounter = 0;
     }
-    
+
     // Update is called once per frame
     void Update()
     {
+        overheatCDR += Time.deltaTime;
+        if (overheatCDR >= 20)
+        {
+            overheatCDR = 0;
+            speedUpCounter = 0;
+        }
+
         if (speedUpCounter >= 2)
         {
+            overheatTimer -= Time.deltaTime;
             playerControl.moveSpeed = 1;
-            playerControl.gameHandler.overheatText.text = "OVERHEAT!";
-            Invoke("StopOverheat", 4);
+            playerControl.gameHandler.overheatText.text = "OVERHEAT! " + Mathf.Round(overheatTimer);
+
+            if (overheatTimer <= 0)
+            {
+                StopOverheat();
+                overheatTimer = 5;
+            }
         }
-        
+
         if (!playerControl.gameHandler.wonGame)
         {
             Collider[] humans = Physics.OverlapSphere(attackPivot.position, attackRange, layerMask);
@@ -57,6 +74,8 @@ public class PlayerAttack : MonoBehaviour
                 SpeedUp();
                 if (!overheatControl)
                 {
+                    if (speedUpCounter == 0)
+                        overheatCDR = 0;
                     speedUpCounter++;
                     overheatControl = true;
                 }
@@ -93,6 +112,7 @@ public class PlayerAttack : MonoBehaviour
         overheatControl = false;
         spedUp = false;
     }
+
     public void SpeedUp()
     {
         spedUp = true;
@@ -103,6 +123,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack(Collider collider)
     {
+        Instantiate(Resources.Load("Droplet_ps"), collider.transform.position, Quaternion.identity);
         Destroy(collider.gameObject, .5f);
         score += 5;
         isAttacking = true;
