@@ -48,7 +48,7 @@ public class PlayerAttack : MonoBehaviour
             overheatCDR += Time.deltaTime;
         }
         
-        if (overheatCDR >= 20)
+        if (overheatCDR >= 15)
         {
             overheatCDR = 0;
             speedUpCounter = 0;
@@ -118,7 +118,7 @@ public class PlayerAttack : MonoBehaviour
     public void SpeedUp()
     {
         spedUp = true;
-        score -= 20;
+        score -= 10;
         playerControl.moveSpeed = speedupSpeed;
         Invoke("StopSpeedUp", 5);
     }
