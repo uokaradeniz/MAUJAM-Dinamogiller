@@ -33,7 +33,7 @@ public class PlayerControl : MonoBehaviour
             horizontal = Input.GetAxis("Horizontal");
             Vector3 dir = Vector3.right * horizontal + Vector3.forward * vertical;
             CalculateRotation(dir);
-            controller.Move(moveSpeed * Time.deltaTime * dir);
+            controller.Move(moveSpeed * Time.deltaTime * dir.normalized);
             controller.Move(Vector3.down * gravityForce);
         }
     }
