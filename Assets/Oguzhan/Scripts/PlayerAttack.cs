@@ -18,7 +18,11 @@ public class PlayerAttack : MonoBehaviour
 
     private PlayerControl playerControl;
     public float speedupSpeed;
+    public float overheatTimer;
+    private int speedUpCounter;
+    private bool spedUp;
 
+    private bool overheatControl;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,15 +31,36 @@ public class PlayerAttack : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
+    void StopOverheat()
+    {
+        playerControl.moveSpeed = playerControl.runSpeed;
+        playerControl.gameHandler.overheatText.text = "!";
+        speedUpCounter = 0;
+    }
+    
     // Update is called once per frame
     void Update()
     {
+        if (speedUpCounter >= 2)
+        {
+            playerControl.moveSpeed = 1;
+            playerControl.gameHandler.overheatText.text = "OVERHEAT!";
+            Invoke("StopOverheat", 4);
+        }
+        
         if (!playerControl.gameHandler.wonGame)
         {
             Collider[] humans = Physics.OverlapSphere(attackPivot.position, attackRange, layerMask);
 
-            if (score >= 20 && Input.GetKeyDown(KeyCode.Q))
+            if (score >= 20 && Input.GetKeyDown(KeyCode.Q) && !spedUp)
+            {
                 SpeedUp();
+                if (!overheatControl)
+                {
+                    speedUpCounter++;
+                    overheatControl = true;
+                }
+            }
 
             if (!isAttacking && Input.GetButtonDown("Attack"))
             {
@@ -65,9 +90,12 @@ public class PlayerAttack : MonoBehaviour
     public void StopSpeedUp()
     {
         playerControl.moveSpeed = playerControl.runSpeed;
+        overheatControl = false;
+        spedUp = false;
     }
     public void SpeedUp()
     {
+        spedUp = true;
         score -= 20;
         playerControl.moveSpeed = speedupSpeed;
         Invoke("StopSpeedUp", 5);

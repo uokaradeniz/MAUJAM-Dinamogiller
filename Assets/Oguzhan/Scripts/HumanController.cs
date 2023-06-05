@@ -20,6 +20,7 @@ public class HumanController : MonoBehaviour
     public float patrolDuration;
 
     public bool isEscaping;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -28,11 +29,14 @@ public class HumanController : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         Vector3 newPos = RandomNavSphere(transform.position, patrolRadius, layerMask);
         navMeshAgent.SetDestination(newPos);
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("Running", navMeshAgent.velocity.magnitude);
+        
         if (!isEscaping)
         {
             navMeshAgent.speed = 3.5f;

@@ -8,11 +8,13 @@ public class GameHandler : MonoBehaviour
     private TextMeshProUGUI scoreText;
     private PlayerAttack playerAttack;
     private TextMeshProUGUI wonGameText;
+    [HideInInspector]public TextMeshProUGUI overheatText;
 
     public bool wonGame;
     // Start is called before the first frame update
     void Start()
     {
+        overheatText = GameObject.Find("OverheatText").GetComponent<TextMeshProUGUI>();
         wonGameText = GameObject.Find("WonGameText").GetComponent<TextMeshProUGUI>();
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
