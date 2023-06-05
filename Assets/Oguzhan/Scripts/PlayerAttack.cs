@@ -23,8 +23,6 @@ public class PlayerAttack : MonoBehaviour
     private bool spedUp;
     public float overheatCDR;
 
-    
-    
     public bool overheatControl;
 
     // Start is called before the first frame update

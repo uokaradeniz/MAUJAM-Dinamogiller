@@ -12,6 +12,7 @@ public class HumanSpawner : MonoBehaviour
     private float spawnTimer;
 
     private GameHandler gameHandler;
+    public string humanType;
 
     private void Start()
     {
@@ -33,6 +34,6 @@ public class HumanSpawner : MonoBehaviour
     void SpawnHuman()
     {
         spawnTimer = 0;
-        Instantiate(Resources.Load("Human"), transform.position, Quaternion.identity);
+        Instantiate(Resources.Load(humanType), transform.position, Quaternion.identity);
     }
 }
