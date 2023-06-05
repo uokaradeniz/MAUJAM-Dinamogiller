@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Oguzhan/OguzTest.unity
-    guid: 0326de9ec8e39aa4aa340c8e3a1f47bb
+    path: Assets/Barancan/new UI/Scenes/menu.unity
+    guid: 57bdb34b16e86854b8290eb7a8b0472c
+  - enabled: 1
+    path: Assets/Barancan/OguzTest 1.unity
+    guid: edd5058c0e4f7134eb9df0bdc20bbe9c
   m_configObjects: {}
