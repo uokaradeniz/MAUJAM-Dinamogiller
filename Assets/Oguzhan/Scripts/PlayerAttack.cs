@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -26,9 +27,16 @@ public class PlayerAttack : MonoBehaviour
 
     public bool overheatControl;
 
+    private AudioSource playerAudioSource;
+    private AudioSource childAudioSource;
+
+    private bool isPlaying;
+
     // Start is called before the first frame update
     void Start()
     {
+        childAudioSource = GetComponentInChildren<AudioSource>();
+        playerAudioSource = GetComponent<AudioSource>();
         playerControl = GetComponent<PlayerControl>();
         attackPivot = transform.Find("PlayerMesh/AttackPivot");
         animator = GetComponentInChildren<Animator>();
@@ -36,40 +44,46 @@ public class PlayerAttack : MonoBehaviour
 
     void StopOverheat()
     {
+        childAudioSource.Stop();
         playerControl.moveSpeed = playerControl.runSpeed;
         playerControl.gameHandler.overheatText.text = "";
         speedUpCounter = 0;
+        isPlaying = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!overheatControl)
-        {
-            overheatCDR += Time.deltaTime;
-        }
-        
-        if (overheatCDR >= 10)
-        {
-            overheatCDR = 0;
-            speedUpCounter = 0;
-        }
-
-        if (speedUpCounter >= 2)
-        {
-            overheatTimer -= Time.deltaTime;
-            playerControl.moveSpeed = 1;
-            playerControl.gameHandler.overheatText.text = "OVERHEAT! " + Mathf.Round(overheatTimer);
-
-            if (overheatTimer <= 0)
-            {
-                StopOverheat();
-                overheatTimer = 5;
-            }
-        }
-
         if (!playerControl.gameHandler.wonGame)
         {
+            if (!overheatControl)
+            {
+                overheatCDR += Time.deltaTime;
+            }
+
+            if (overheatCDR >= 10)
+            {
+                overheatCDR = 0;
+                speedUpCounter = 0;
+            }
+
+            if (speedUpCounter >= 2)
+            {
+                overheatTimer -= Time.deltaTime;
+                playerControl.moveSpeed = 1;
+                playerControl.gameHandler.overheatText.text = "OVERHEAT! " + Mathf.Round(overheatTimer);
+                if (!isPlaying)
+                {
+                    childAudioSource.PlayOneShot((AudioClip)Resources.Load("engine"));
+                    isPlaying = true;
+                }
+                if (overheatTimer <= 0)
+                {
+                    StopOverheat();
+                    overheatTimer = 5;
+                }
+            }
+            
             Collider[] humans = Physics.OverlapSphere(attackPivot.position, attackRange, layerMask);
 
             if (score >= 20 && Input.GetKeyDown(KeyCode.Q) && !spedUp)
@@ -130,6 +144,7 @@ public class PlayerAttack : MonoBehaviour
     void Attack(Collider collider)
     {
         Instantiate(Resources.Load("Droplet_ps"), collider.transform.position, Quaternion.identity);
+        playerAudioSource.PlayOneShot((AudioClip)Resources.Load("blood"));
         Destroy(collider.gameObject, .5f);
         score += 5;
         isAttacking = true;

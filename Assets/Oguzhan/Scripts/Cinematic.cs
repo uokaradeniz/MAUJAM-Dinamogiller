@@ -28,4 +28,10 @@ public class Cinematic : MonoBehaviour
         ui.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         Destroy(GetComponent<Animator>());
     }
+
+    public void ChangeTex()
+    {
+        SkinnedMeshRenderer mat = GameObject.Find("Ekran").GetComponent<SkinnedMeshRenderer>();
+        mat.materials[1].SetTexture("_MainTex",(Texture)Resources.Load("angry"));
+    }
 }

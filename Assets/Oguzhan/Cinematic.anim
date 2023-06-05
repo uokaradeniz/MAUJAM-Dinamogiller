@@ -590,6 +590,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 5.9666667
+    functionName: ChangeTex
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 8.066667
     functionName: StopAnimation
     data: 
