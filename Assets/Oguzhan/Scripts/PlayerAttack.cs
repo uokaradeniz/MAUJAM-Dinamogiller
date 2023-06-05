@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -98,7 +99,10 @@ public class PlayerAttack : MonoBehaviour
             }
 
             if (pullHuman)
+            {
                 human.transform.position = attackPivot.position;
+                human.GetComponent<CapsuleCollider>().enabled = false;
+            }
         }
     }
 
