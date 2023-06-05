@@ -769,12 +769,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad4dc273333cae4290030923cc14f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escapeRange: 7.5
-  patrolRadius: 15
+  escapeRange: 10
+  patrolRadius: 30
   layerMask:
     serializedVersion: 2
     m_Bits: 55
-  patrolDuration: 3
+  patrolDuration: 2
   isEscaping: 0
 --- !u!1 &5921267844002846573
 GameObject:

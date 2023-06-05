@@ -39,14 +39,14 @@ public class HumanController : MonoBehaviour
         
         if (!isEscaping)
         {
-            navMeshAgent.speed = 3.5f;
+            navMeshAgent.speed = 4f;
             navMeshAgent.acceleration = 8;
             Patrol();
         }
         else
         {
-            navMeshAgent.speed = 7;
-            navMeshAgent.acceleration = 2;
+            navMeshAgent.speed = 8;
+            navMeshAgent.acceleration = 5;
         }
 
         if (Vector3.Distance(transform.position, player.transform.position) < escapeRange)

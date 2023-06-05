@@ -48,7 +48,7 @@ public class PlayerAttack : MonoBehaviour
             overheatCDR += Time.deltaTime;
         }
         
-        if (overheatCDR >= 15)
+        if (overheatCDR >= 10)
         {
             overheatCDR = 0;
             speedUpCounter = 0;
