@@ -43,7 +43,11 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        overheatCDR += Time.deltaTime;
+        if (!overheatControl)
+        {
+            overheatCDR += Time.deltaTime;
+        }
+        
         if (overheatCDR >= 20)
         {
             overheatCDR = 0;
