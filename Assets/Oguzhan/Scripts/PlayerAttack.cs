@@ -77,13 +77,14 @@ public class PlayerAttack : MonoBehaviour
                     childAudioSource.PlayOneShot((AudioClip)Resources.Load("engine"));
                     isPlaying = true;
                 }
+
                 if (overheatTimer <= 0)
                 {
                     StopOverheat();
                     overheatTimer = 5;
                 }
             }
-            
+
             Collider[] humans = Physics.OverlapSphere(attackPivot.position, attackRange, layerMask);
 
             if (score >= 20 && Input.GetKeyDown(KeyCode.Q) && !spedUp)
@@ -135,6 +136,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void SpeedUp()
     {
+        childAudioSource.PlayOneShot((AudioClip)Resources.Load("EngineBoost"));
         spedUp = true;
         score -= 10;
         playerControl.moveSpeed = speedupSpeed;
