@@ -12,7 +12,7 @@ public class GameHandler : MonoBehaviour
     [HideInInspector] public TextMeshProUGUI overheatText;
     private TextMeshProUGUI lostGameText;
     private TextMeshProUGUI timerText;
-    public float gameTimer = 188f;
+    public float gameTimer = 143f;
     public float gameDuration;
     [HideInInspector] public TextMeshProUGUI overheatCDRText;
     private RectTransform returnToMenu;
