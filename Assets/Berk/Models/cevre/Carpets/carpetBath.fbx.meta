@@ -1,34 +1,9 @@
 fileFormatVersion: 2
-guid: 71744efb757bf1943ac3cd20dfdd7985
+guid: f1da25159e82ad646bbef92369913b68
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.004
-    second: {fileID: 2100000, guid: 879d609e1cf2ef54094a76ff0109050b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: duvar
-    second: {fileID: 2100000, guid: 6430063c08bdf0f40875f1f62f268917, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: easter egg
-    second: {fileID: 2100000, guid: 1b162beb9afb9c84bb11d86a65962a1d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: grassTexture
-    second: {fileID: 2100000, guid: a1bd3b9a21a79eb43b1e9831cf8bef28, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: laminant
-    second: {fileID: 2100000, guid: 13ced8c0f22679b46ba216c4a59c1505, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
