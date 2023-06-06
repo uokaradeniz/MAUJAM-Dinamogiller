@@ -8,6 +8,6 @@ public class TimeLineNextSceneLoader : MonoBehaviour
 {
     private void OnEnable()
     {
-        SceneManager.LoadScene("BerkScene 6", LoadSceneMode.Single);
+        SceneManager.LoadScene("BerkScene 7", LoadSceneMode.Single);
     }
 }
