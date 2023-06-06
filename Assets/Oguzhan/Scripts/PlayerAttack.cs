@@ -61,10 +61,16 @@ public class PlayerAttack : MonoBehaviour
             
             if (overheatCDR < 8 && speedUpCounter == 1)
                 playerControl.gameHandler.overheatCDRText.text = "Overheat Cooldown: " + Mathf.Round(overheatCDR);
-            else if(isPlaying)
+            else if (isPlaying)
+            {
                 playerControl.gameHandler.overheatCDRText.text = "Overheat Cooldown: Hot";
+                playerControl.gameHandler.overheatCDRText.color = Color.yellow;
+            }
             else
+            {
                 playerControl.gameHandler.overheatCDRText.text = "Overheat Cooldown: Cool";
+                playerControl.gameHandler.overheatCDRText.color = Color.blue;
+            }
 
             if (!overheatControl)
             {
