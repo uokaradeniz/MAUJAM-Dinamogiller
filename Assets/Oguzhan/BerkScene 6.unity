@@ -11811,7 +11811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8082583919612834095, guid: 05426e636fb145b4d91a625f11e38029, type: 3}
       propertyPath: gameDuration
-      value: 188
+      value: 158
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05426e636fb145b4d91a625f11e38029, type: 3}
@@ -18648,7 +18648,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Q: Speed Up\n -10 Time"
+  m_text: "Q: Speed Up\n -8 Time"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

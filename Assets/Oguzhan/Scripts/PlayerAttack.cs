@@ -56,7 +56,10 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!playerControl.gameHandler.wonGame || !playerControl.gameHandler.lostGame)
         {
-            if (overheatCDR > 0 && speedUpCounter == 1)
+            if (score <= 0)
+                score = 0;
+            
+            if (overheatCDR < 8 && speedUpCounter == 1)
                 playerControl.gameHandler.overheatCDRText.text = "Overheat Cooldown: " + Mathf.Round(overheatCDR);
             else if(isPlaying)
                 playerControl.gameHandler.overheatCDRText.text = "Overheat Cooldown: Hot";
@@ -65,12 +68,12 @@ public class PlayerAttack : MonoBehaviour
 
             if (!overheatControl)
             {
-                overheatCDR += Time.deltaTime;
+                overheatCDR -= Time.deltaTime;
             }
 
-            if (overheatCDR >= 8)
+            if (overheatCDR <= 0)
             {
-                overheatCDR = 0;
+                overheatCDR = 8;
                 speedUpCounter = 0;
             }
 
@@ -101,7 +104,7 @@ public class PlayerAttack : MonoBehaviour
                 if (!overheatControl)
                 {
                     if (speedUpCounter == 0)
-                        overheatCDR = 0;
+                        overheatCDR = 8;
                     speedUpCounter++;
                     overheatControl = true;
                 }
@@ -146,7 +149,7 @@ public class PlayerAttack : MonoBehaviour
     {
         childAudioSource.PlayOneShot((AudioClip)Resources.Load("EngineBoost"));
         spedUp = true;
-        playerControl.gameHandler.gameTimer -= 5;
+        playerControl.gameHandler.gameTimer -= 8;
         playerControl.moveSpeed = speedupSpeed;
         Invoke("StopSpeedUp", 7);
     }
