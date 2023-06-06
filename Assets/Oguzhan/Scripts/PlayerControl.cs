@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     private CharacterController controller;
     private Animator animator;
     [HideInInspector]public GameHandler gameHandler;
+    public bool lockMovement;
 
 // Start is called before the first frame update
     private void Start()
@@ -27,7 +28,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!gameHandler.wonGame)
+        if (!gameHandler.wonGame && !gameHandler.lostGame && !lockMovement)
         {
             vertical = Input.GetAxis("Vertical");
             horizontal = Input.GetAxis("Horizontal");

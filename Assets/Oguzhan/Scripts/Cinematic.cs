@@ -8,11 +8,13 @@ public class Cinematic : MonoBehaviour
     private Transform camera;
     private Transform kid;
     private GameObject ui;
+    private GameObject player;
     
     
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         ui = GameObject.Find("UI");
         kidAnimator = GameObject.Find("Cinematickid").GetComponent<Animator>();
     }
@@ -33,5 +35,10 @@ public class Cinematic : MonoBehaviour
     {
         SkinnedMeshRenderer mat = GameObject.Find("Ekran").GetComponent<SkinnedMeshRenderer>();
         mat.materials[1].SetTexture("_MainTex",(Texture)Resources.Load("angry"));
+    }
+
+    public void UnlockMovement()
+    {
+        player.GetComponent<PlayerControl>().lockMovement = false;
     }
 }

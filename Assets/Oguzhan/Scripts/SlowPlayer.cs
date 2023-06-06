@@ -12,6 +12,7 @@ public class SlowPlayer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerControl playerControl = other.GetComponent<PlayerControl>();
+
             playerControl.moveSpeed = slowedSpeed;
         }
     }
@@ -21,7 +22,13 @@ public class SlowPlayer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerControl playerControl = other.GetComponent<PlayerControl>();
-            playerControl.moveSpeed = playerControl.runSpeed;
+            PlayerAttack playerAttack = other.GetComponent<PlayerAttack>();
+            if (!playerAttack.spedUp)
+                playerControl.moveSpeed = playerControl.runSpeed;
+            else
+            {
+                playerControl.moveSpeed = playerAttack.speedupSpeed;
+            }
         }
     }
 }

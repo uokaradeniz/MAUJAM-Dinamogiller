@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Oguzhan/new UI/Scenes/menu.unity
     guid: 57bdb34b16e86854b8290eb7a8b0472c
   - enabled: 1
-    path: Assets/Oguzhan/BerkScene 1.unity
-    guid: 5e5924b357d798b499c7a46019436981
-  - enabled: 1
     path: Assets/Berk/BerkCutscene.unity
     guid: c7b833b124b6ad042b29d81b03aa7708
   - enabled: 1

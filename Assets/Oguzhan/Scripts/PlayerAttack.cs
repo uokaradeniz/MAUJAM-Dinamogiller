@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
     public float speedupSpeed;
     public float overheatTimer = 5;
     public int speedUpCounter;
-    private bool spedUp;
+    public bool spedUp;
     public float overheatCDR;
 
     public bool overheatControl;
@@ -54,7 +54,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerControl.gameHandler.wonGame)
+        if (!playerControl.gameHandler.wonGame || !playerControl.gameHandler.lostGame)
         {
             if (!overheatControl)
             {
@@ -87,7 +87,7 @@ public class PlayerAttack : MonoBehaviour
 
             Collider[] humans = Physics.OverlapSphere(attackPivot.position, attackRange, layerMask);
 
-            if (score >= 20 && Input.GetKeyDown(KeyCode.Q) && !spedUp)
+            if (score >= 10 && Input.GetKeyDown(KeyCode.Q) && !spedUp)
             {
                 SpeedUp();
                 if (!overheatControl)
@@ -140,7 +140,7 @@ public class PlayerAttack : MonoBehaviour
         spedUp = true;
         score -= 10;
         playerControl.moveSpeed = speedupSpeed;
-        Invoke("StopSpeedUp", 5);
+        Invoke("StopSpeedUp", 7);
     }
 
     void Attack(Collider collider)
