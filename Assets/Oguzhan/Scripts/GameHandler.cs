@@ -47,7 +47,7 @@ public class GameHandler : MonoBehaviour
             wonGameText.text = "YOU WIN";
         }
 
-        scoreText.text = "Score: " + playerAttack.score.ToString();
+        scoreText.text = " : " + playerAttack.score.ToString();
 
         if (lostGame)
             lostGameText.text = "YOU LOST";
