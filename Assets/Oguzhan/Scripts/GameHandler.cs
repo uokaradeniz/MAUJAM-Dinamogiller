@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class GameHandler : MonoBehaviour
     void Update()
     {
         if (!lostGame)
-            timerText.text = "Time Left: " + Mathf.Round(gameTimer).ToString();
+            timerText.text = " : " + Mathf.Round(gameTimer).ToString();
 
         gameTimer -= Time.deltaTime;
         if (gameTimer <= 0)
@@ -51,5 +52,10 @@ public class GameHandler : MonoBehaviour
 
         if (lostGame)
             lostGameText.text = "YOU LOST";
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("menu");
     }
 }

@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Berk/BerkCutscene.unity
     guid: c7b833b124b6ad042b29d81b03aa7708
   - enabled: 1
-    path: Assets/Oguzhan/BerkScene 6.unity
-    guid: 6ff0b5640b71ddc418778fe0b40bcd3b
+    path: Assets/Berk/BerkScene 7.unity
+    guid: 1d299035c370d1440bfafb3eed56c655
   m_configObjects: {}
