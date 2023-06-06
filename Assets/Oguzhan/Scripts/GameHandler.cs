@@ -15,6 +15,7 @@ public class GameHandler : MonoBehaviour
     public float gameTimer = 188f;
     public float gameDuration;
     [HideInInspector] public TextMeshProUGUI overheatCDRText;
+    private RectTransform returnToMenu;
 
     public bool wonGame;
     public bool lostGame;
@@ -30,6 +31,7 @@ public class GameHandler : MonoBehaviour
         lostGameText = GameObject.Find("LostGameText").GetComponent<TextMeshProUGUI>();
         timerText = GameObject.Find("TimerText").GetComponent<TextMeshProUGUI>();
         gameTimer = gameDuration;
+        returnToMenu = GameObject.Find("ReturnToMenu").GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,8 @@ public class GameHandler : MonoBehaviour
     {
         if (!lostGame)
             timerText.text = " : " + Mathf.Round(gameTimer).ToString();
+        if (lostGame || wonGame)
+            returnToMenu.localScale = new Vector3(1, 1, 1);
 
         gameTimer -= Time.deltaTime;
         if (gameTimer <= 0)
