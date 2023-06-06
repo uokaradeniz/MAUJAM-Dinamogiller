@@ -13,6 +13,7 @@ public class GameHandler : MonoBehaviour
     private TextMeshProUGUI timerText;
     public float gameTimer = 188f;
     public float gameDuration;
+    [HideInInspector] public TextMeshProUGUI overheatCDRText;
 
     public bool wonGame;
     public bool lostGame;
@@ -20,6 +21,7 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        overheatCDRText = GameObject.Find("OverheatCDR").GetComponent<TextMeshProUGUI>();
         overheatText = GameObject.Find("OverheatText").GetComponent<TextMeshProUGUI>();
         wonGameText = GameObject.Find("WonGameText").GetComponent<TextMeshProUGUI>();
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();

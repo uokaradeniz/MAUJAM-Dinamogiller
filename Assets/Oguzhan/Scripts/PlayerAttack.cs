@@ -56,12 +56,19 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!playerControl.gameHandler.wonGame || !playerControl.gameHandler.lostGame)
         {
+            if (overheatCDR > 0 && speedUpCounter == 1)
+                playerControl.gameHandler.overheatCDRText.text = "Overheat Cooldown: " + Mathf.Round(overheatCDR);
+            else if(isPlaying)
+                playerControl.gameHandler.overheatCDRText.text = "Overheat Cooldown: Hot";
+            else
+                playerControl.gameHandler.overheatCDRText.text = "Overheat Cooldown: Cool";
+
             if (!overheatControl)
             {
                 overheatCDR += Time.deltaTime;
             }
 
-            if (overheatCDR >= 10)
+            if (overheatCDR >= 8)
             {
                 overheatCDR = 0;
                 speedUpCounter = 0;
@@ -74,6 +81,7 @@ public class PlayerAttack : MonoBehaviour
                 playerControl.gameHandler.overheatText.text = "OVERHEAT! " + Mathf.Round(overheatTimer);
                 if (!isPlaying)
                 {
+                    score -= 5;
                     childAudioSource.PlayOneShot((AudioClip)Resources.Load("engine"));
                     isPlaying = true;
                 }
@@ -87,7 +95,7 @@ public class PlayerAttack : MonoBehaviour
 
             Collider[] humans = Physics.OverlapSphere(attackPivot.position, attackRange, layerMask);
 
-            if (score >= 10 && Input.GetKeyDown(KeyCode.Q) && !spedUp)
+            if (playerControl.gameHandler.gameTimer >= 5 && Input.GetKeyDown(KeyCode.Q) && !spedUp)
             {
                 SpeedUp();
                 if (!overheatControl)
@@ -138,7 +146,7 @@ public class PlayerAttack : MonoBehaviour
     {
         childAudioSource.PlayOneShot((AudioClip)Resources.Load("EngineBoost"));
         spedUp = true;
-        score -= 10;
+        playerControl.gameHandler.gameTimer -= 5;
         playerControl.moveSpeed = speedupSpeed;
         Invoke("StopSpeedUp", 7);
     }
